@@ -1,0 +1,9 @@
+POST http://localhost:8080/api/tasks/add-task HTTP/1.1
+Content-Type: 'application/json'
+
+<request>
+  <title>Prueba</title>
+  <notes>Prueba tarea1</notes>
+  <start>new Date()</start>
+  <end>new Date() -2</end>
+</request>
