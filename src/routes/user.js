@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createUser } = require('../controllers/user')
+const { createUser, login, getUser } = require('../controllers/user')
 
 const router = Router()
 
@@ -7,7 +7,10 @@ const router = Router()
 router.post('/register', createUser)
 
 // Login
-router.get('/login')
+router.post('/login', login)
+
+// Get user data
+router.get('/getUser', getUser)
 
 // Logout
 router.get('/logout')
