@@ -4,7 +4,7 @@ const options = {
   singleQuote: true,
   arrowParens: 'avoid',
   bracketSpacing: true,
-  trailingComma: 'none',
+  trailingComma: 'none'
 }
 
 module.exports = options

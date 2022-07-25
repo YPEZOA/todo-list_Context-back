@@ -8,6 +8,6 @@ const router = Router()
 router.get('/getTasks', getTasks)
 
 // Create task
-router.post('/add-task',verifyToken, createTask)
+router.post('/add-task', verifyToken, createTask)
 
 module.exports = router

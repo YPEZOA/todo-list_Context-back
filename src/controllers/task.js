@@ -3,21 +3,17 @@ const Task = require('../models/task.model')
 const User = require('../models/user.model')
 
 const getTasks = async (req, res) => {
-  const  {userId}  = req.query
-  console.log(userId);
-  const user = await User.findById(userId).populate(
-    'tasks', {
-      _id:1,
-      title:1,
-      notes:1,
-      complete:1
-    }
-  )
+  const { userId } = req.query
+  console.log(userId)
+  const user = await User.findById(userId).populate('tasks', {
+    _id: 1,
+    title: 1,
+    notes: 1,
+    complete: 1
+  })
 
   if (!user.tasks.length) {
-    return res
-      .status(200)
-      .send({ status: 200, data: 'Sin datos para mostrar' })
+    return res.status(200).send({ status: 200, data: 'Sin datos para mostrar' })
   } else {
     return res.status(200).send({ status: 200, data: user.tasks })
   }
@@ -27,7 +23,7 @@ const createTask = async (req, res = response, next) => {
   const { title, notes, start, end, userId } = req.body
   const missingFields = req.body
 
-  const user = await User.findById( userId )
+  const user = await User.findById(userId)
   if (!title || !start || !end) {
     return res.status(400).send({
       status: 400,
@@ -43,14 +39,16 @@ const createTask = async (req, res = response, next) => {
     start,
     end,
     complete: false,
-    user: userFromTask,
+    user: userFromTask
   })
 
   try {
-    const savedTask = await newTask.save();
+    const savedTask = await newTask.save()
     user.tasks = user.tasks.concat(savedTask)
     await user.save()
-    return res.status(200).send({ status: 200, message: 'Tarea creada con éxito.', task: newTask })
+    return res
+      .status(200)
+      .send({ status: 200, message: 'Tarea creada con éxito.', task: newTask })
   } catch (error) {
     next(error)
   }
