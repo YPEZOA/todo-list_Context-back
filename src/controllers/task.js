@@ -4,7 +4,6 @@ const User = require('../models/user.model')
 
 const getTasks = async (req, res) => {
   const { userId } = req.query
-  console.log(userId)
   const user = await User.findById(userId).populate('tasks', {
     _id: 1,
     title: 1,
@@ -12,7 +11,7 @@ const getTasks = async (req, res) => {
     complete: 1
   })
 
-  if (!user.tasks.length) {
+  if (!user?.tasks.length) {
     return res.status(200).send({ status: 200, data: 'Sin datos para mostrar' })
   } else {
     return res.status(200).send({ status: 200, data: user.tasks })
@@ -54,7 +53,23 @@ const createTask = async (req, res = response, next) => {
   }
 }
 
+const updateTask = async (req, res) => {
+  const { id } = req.params
+  const { ...data } = req.body
+
+  try {
+    await Task.findByIdAndUpdate(id, data)
+    res
+      .status(200)
+      .send({ status: 200, message: 'Tarea actualizada con éxito' })
+  } catch (e) {
+    console.error(e)
+    res.send(e)
+  }
+}
+
 module.exports = {
   getTasks,
-  createTask
+  createTask,
+  updateTask
 }
