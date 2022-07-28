@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const dbConnection = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_CNN, {
+    mongoose.connect(process.env.MONGODB_CNN, {
       useUnifiedTopology: true
     })
     console.log('DD.BB Connected')
