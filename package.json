@@ -10,7 +10,7 @@
     "prettier": "^2.7.1"
   },
   "scripts": {
-    "start": "nodemon --exec src/app.js"
+    "start": "node src/app.js"
   },
   "author": "ypezoadev",
   "license": "ISC",
