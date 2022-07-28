@@ -5,7 +5,7 @@ const { getTasks, createTask, updateTask } = require('../controllers/task')
 const router = Router()
 
 // Show tasks
-router.get('/', getTasks)
+router.get('/getTasks', getTasks)
 
 // Create task
 router.post('/add-task', verifyToken, createTask)
