@@ -11,8 +11,8 @@ class Server {
       user: '/api/user'
     }
     this.middlewares()
-    this.routes()
     this.dbConnect()
+    this.routes()
   }
 
   async dbConnect() {
