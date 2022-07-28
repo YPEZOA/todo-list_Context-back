@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "backend for tasks-app",
   "main": "index.js",
+  "engines": {
+    "node": "16.13.2"
+  },
   "devDependencies": {
     "prettier": "^2.7.1"
   },
   "scripts": {
-    "start": "node src/app.js"
+    "start": "nodemon --exec src/app.js"
   },
   "author": "ypezoadev",
   "license": "ISC",
